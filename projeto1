@@ -160,6 +160,7 @@ for c  in alunos :
     pyautogui.write(f'{c}')
     pyautogui.press('down')
 
+time.sleep(7)
 pyautogui.click(x=122, y=252)
     
 for c in notas2 :
