@@ -1,0 +1,167 @@
+#O PROJETO SERÁ: O USUARIO VAI ESCREVER O NOME DE ALUNOS DE UMA SALA E 
+# DIZER A NOTA TIRADA POR ELE EM CADA BIMESTRE, O PROGRAMA VAI FAZER A 
+# MEDIA DESSAS NOTAS E CONSIDERAR SE ELE PASSOU DE ANO OU NAO (NOTA MINIMA 7)
+# DEPOIS, ELE VAI FAZER A LISTA DOS ALUNOS APROVADOS E REPROVADOS
+#DATA DE INICIO: 25/02
+import time
+import pyautogui
+pyautogui.FAILSAFE = True
+pyautogui.PAUSE = 1
+alunos = list()
+notas = list()
+notas2 = list()
+cont = 0
+media = 0 
+
+
+
+print("bem vindo(a) ao sistema, por favor se identifique")
+aluno_professor= (input("você é professor?"))
+
+if aluno_professor not in " sim SIM s S sou SOU " :
+    print("acesso negado!")
+else :
+    print("certo, seja bem-vindo(a) ao nosso sistema de cadastro!")
+    print ("-" *40)
+
+
+    alunos.append(input("cadastre o nome do aluno(a)"))
+    print (f'{alunos} foi cadastrado(a) em nosso sistema!')
+    for c in range (1, 5):
+        notas.append(input(f"fale sua nota do {c} bimestre"))
+    print("-" * 40)
+        
+
+    notas = [float(x) for x in notas ]
+    #anote essa funcao acima
+    media = sum(notas) / len(notas)
+    #anote essa tambem para fazer a media de listas
+    notas2.append (sum(notas) / 4)
+    print(f'a media de {alunos} foi {media}')
+    
+    
+    a = input("voce quer cadastar mais algum aluno no sistema?")
+    while a in " SIM sim s S" :
+        del notas
+        notas = list()
+        cont = cont + 1
+        alunos.append(input("cadastre outro aluno")) 
+        print (f'{alunos[cont]} foi cadastrado em nosso sistema')
+        for b in range (1 , 5):
+            notas.append(float(input(f"agora fale a sua nota do {b} bimestre")))
+        print("-" *40)
+        notas = [float(x) for x in notas]
+        media = sum(notas) / 4
+        notas2.append(sum(notas) /4)
+        print(f'a media de {alunos[cont]} foi {media}')
+        a = input("voce quer cadastar mais algum aluno no sistema?")
+
+        if a in " nao NAO n N " :
+            break
+        if a not in " SIM sim S s N n NAO nao " :
+            print("erro! digite novamente")
+            a = input("voce quer cadastar mais algum aluno no sistema?")
+            
+    print(f'muito bem, os seguintes alunos foram cadastrados: {alunos}')
+
+
+
+    continuar = input("deseja continuar?")
+    if continuar in " nao NAO n N " :
+        a = input("voce quer cadastar mais algum aluno no sistema?")
+    while a in " SIM sim s S" :
+        cont = cont + 1
+        alunos.append(input("cadastre outro aluno")) 
+        print (f'{alunos[cont]} foi cadastrado em nosso sistema')
+        for b in range (1 , 5):
+            notas.append(input(f"agora fale a sua nota do {b} bimestre"))
+        notas = [int(x) for x in notas]
+        media = sum(notas) / 4
+        notas2.append(sum(notas)/4)
+        print(f'a media de {alunos[cont]} foi {media}')
+        a = input("voce quer cadastar mais algum aluno no sistema?")
+        if a in " nao NAO n N " :
+            break
+        if a not in " SIM sim S s N n NAO nao " :
+            print("erro! digite novamente")
+            a = input("voce quer cadastar mais algum aluno no sistema?")
+            print(f'muito bem, os seguintes alunos foram cadastrados: {alunos}')
+        #print(f'muito bem, os seguintes alunos foram cadastrados: {alunos}')
+
+    else :
+        print("aguarde...")
+
+    time.sleep(3)
+
+    notas = [int(x) for x in notas]
+    #for c in range(0, len(alunos)) ;
+
+    print("TODOS OS DADOS FORAM COLETADOS COM SUCESSO")
+    
+
+    while True :
+        escolha1 = int(input("qual informação você deseja ver?\n"
+    "[1] menu de alunos + média\n"
+    "[2] menu de aprovados\n"
+    "[3] menu de reprovados \n" 
+    "[4] maior e menor nota\n"
+    "[5] sair do programa\n"))
+        if escolha1 == 1 :
+            print("---------LISTA DE ALUNOS E SUAS RESPECTIVAS MÉDIAS---------")
+            print ()
+            for c , b  in zip(alunos, notas2) :
+                print ( f'Aluno: {c} ------------- Média final: {b}' )
+            decisao = input("deseja continuar?")
+            if decisao in " nao NAO n N " :
+                break
+        
+        if escolha1 == 2 :
+             print("----------------- LISTA DE APROVADOS -----------------")
+             for maior in notas2 :
+                if maior >= 7 :
+                    print (f'aluno aprovado: {alunos[notas2.index(maior)]} ------- média final:  {maior}')
+             decisao = input("deseja continuar?")
+             if decisao in " nao NAO N n " :
+                break
+
+        if escolha1 == 3 :
+             print("---------- LISTA DE REPROVADOS ------------")
+             for menor in notas2:
+                if menor <7 :
+                   
+                    print(f'aluno reprovado: {alunos[notas2.index(menor)]}-------- média final: {menor}')
+             decisao = input("deseja continuar?")
+             if decisao in " nao NAO N n " :
+                break 
+             
+        if escolha1 == 4  :
+            print("---------- MAIOR E MENOR NOTA ----------")
+            print(f"a maior média final foi a do(a) {alunos[notas2.index(max(notas2))]}, com {max(notas2)}.")
+            print(f'a menor média final foi a do(a) {alunos[notas2.index(min(notas2))]}, com {min(notas2)}')
+            decisao = input("deseja continuar?")
+            if decisao in " n NAO nao N " :
+                break
+
+        if escolha1 == 5 :
+            break
+
+
+print("obrigado por utilizar o nosso sistema!")
+
+pyautogui.press ("win")
+time.sleep(2)
+pyautogui.write ("excel")
+pyautogui.press("enter")
+time.sleep(7)
+pyautogui.press('enter')
+
+time.sleep(2)
+for c  in alunos :
+    pyautogui.write(f'{c}')
+    pyautogui.press('down')
+
+pyautogui.click(x=122, y=252)
+    
+for c in notas2 :
+    pyautogui.write(f'{c}')
+    pyautogui.press("down")
