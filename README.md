@@ -1,2 +1,2 @@
-# SISTEMA DE CADASTRO COMPLETO
+# SISTEMA DE **CADASTRO COMPLETO**
 Esse sistema possibilita que o usuário (professor), escreva o nome de um aluno e sua respectiva nota de cada bimestre. Ao final, o usuário pode escolher entre: visualizar o mural de todos os alunos adicionados e suas médias finais, ver os alunos aprovados e reprovados e observar quem teve as maiores e menores notas. Além disso, pra deixar o programa ainda mais completo, foi utilizado a bliblioteca PyAutogui para transformar todos os dados de nomes e médias dos alunos em uma planilha do Excel.
